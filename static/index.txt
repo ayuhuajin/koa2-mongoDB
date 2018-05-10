@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+        <script src="https://cdn.bootcss.com/qs/6.3.0/qs.js"></script>
+		<style>
+			*{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            #app{
+                width: 700px;
+                margin: 100px auto;
+                text-align: center;
+            }
+            .red{
+                color:red;
+            }
+            li{
+                display: block;
+                overflow: hidden;
+            }
+            .delete{
+                cursor: pointer;
+                color: red;                
+            }
+            .edit{
+                cursor:pointer;
+                color: cornflowerblue;
+            }
+            .add{
+                cursor:pointer;
+                margin-left: 20px;
+                color: #aaa;
+            }
+            li span,li input {
+                float: left;
+                display: block;
+                min-width: 100px;
+                padding:5px 10px;
+                line-height: 30px;
+                text-align: center;
+                border:1px solid #eee;
+            }
+            input[type=text] {
+                
+            }
+            .list-wrap{
+                margin-top: 20px;
+            }
+            li input{
+                width:150px;
+                padding: 0 45px 0 10px;
+                line-height: 40px;
+            }
+            .search{
+                margin-left: -45px;
+                cursor: pointer;
+                color: #726d6d;
+            }
+            .searchString{
+                width: 250px;
+                height: 40px;
+                padding: 0 45px 0 10px;
+                line-height: 40px;
+            }
+            input[type="text"]:disabled{
+                background-color: white;
+            }
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+            
+            <div>
+                <input type="text" placeholder="请输入要搜索的姓名" class="searchString" v-model="searchString">
+                <span class="search" @click="search">搜索</span>  <span class="add" @click="add">添加</span>
+            </div>          
+            <ul class="list-wrap">
+                <li v-for="(item, index) in list" >
+                    <input type="text" v-model="item.name" :disabled= "item.disabled"/>
+                    <input type="text" v-model="item.age" :disabled= "item.disabled"/>
+                    <input type="text" v-model="item.time" disabled= "disabled"/>
+                    <span class="delete" @click="remove(index)">{{item.remove}}</span>
+                    <span class="edit" @click="edit(index)">{{item.operation}}</span>
+                </li>
+            </ul>
+        </div>
+	</body>
+	<script>
+        const vm = new Vue({
+            el: '#app',
+            data:{
+                list: [
+                    {
+                        name: '',
+                        age: '',
+                        operation: '编辑',
+                        remove: '删除',
+                    }
+                ],
+                searchString: ''
+            },
+            mounted: function () {
+                let _this = this;
+                _this.getList();
+            },
+            methods: {
+                getList () {
+                    let _this = this;
+
+                    axios.get('/list')
+                    .then(function (response) {
+                        _this.list = _this.changeData(response.data);
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                changeData (data) {
+                    data.forEach(element => {
+                        element.operation = '编辑';
+                        element.remove = '删除';
+                        element.disabled = true
+                        return element;
+                    });
+                    return data
+                },
+                add () {
+                    let _this = this;
+                    let item = {
+                            name: '',
+                            age: '',
+                            operation: '编辑',
+                            remove: '删除',
+                            disabled: true,
+                        }
+                    _this.list.push(item);
+                },
+                edit (index) {
+                    let _this = this;
+                    console.log(index);
+                    if (_this.list[index].operation === '编辑') {
+                        _this.list[index].operation = '保存'
+                        _this.list[index].disabled = false;
+                    } else {
+                        _this.list[index].operation = '编辑'
+                        _this.list[index].disabled = true;
+                        if (_this.list[index]._id) {
+                            axios.post('/update', {
+                                _id: _this.list[index]._id,
+                                name:  _this.list[index].name,
+                                age: _this.list[index].age
+                            }, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then((response) => {
+                                console.log('编辑成功')
+                            }).catch((response) => {
+                                console.log('编辑请求失败')
+                            })
+                        } else {
+                            axios.post('/add', {
+                                name:  _this.list[index].name,
+                                age: _this.list[index].age
+                            }, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then((response) => {
+                                console.log('新增成功')
+                            }).catch((response) => {
+                                console.log('新增请求失败')
+                            })
+                        }
+                    }
+                },
+                remove (index) {
+                    let _this = this;
+                    
+                    axios.post('/delete', {
+                        _id:  _this.list[index]._id
+                    }).then((response) => {
+                        console.log('请求成功')
+                        _this.list.splice(index, 1);
+                    }).catch((response) => {
+                        console.log('请求失败')
+                    })
+                },
+                search () {
+                    let _this = this;
+                    let params = {
+                        name: _this.searchString
+                    }
+                    axios.get('/search',{
+                        params:params
+                    })
+                    .then(function (response) {
+                        _this.list = _this.changeData(response.data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            }
+        })
+	</script>
+</html>

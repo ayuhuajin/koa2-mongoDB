@@ -9,9 +9,9 @@ const app = new Koa();
 
 // 静态资源目录对于相对入口文件app.js的路径
 const staticPath = './static'
-
+// 访问路径为 http://localhost:3000/common.css    省略 static  
 app.use(static(
-  path.join( __dirname,  staticPath)
+  path.join( __dirname,  staticPath)   
 ))
 
 

@@ -1,0 +1,338 @@
+body{background: #f2f2f2;color:#333;}
+.active {
+    color:#1072ba;
+}
+.blank{
+    height: 50px;
+}
+.clearfix:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    zoom: 1;
+}
+.title1{
+    padding-left: .2rem;
+    font-size: 0.28rem;
+    font-weight: bold;
+    line-height: .64rem;
+    color:#333;
+    border-bottom: 1px solid #ddd;
+    border-top:1px solid #ddd;
+}
+section{
+    margin-bottom:.38rem;
+    background: white;
+}
+section .lineli{
+    position: relative;
+    float: left;
+    width: 25%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-top: 0;
+}
+.imater{
+    padding:.26rem 0;
+    text-align: center;
+}
+section .lineli img{
+    margin:0 auto;
+    height: .68rem;
+}
+b{
+    display: block;
+    font-weight: normal;
+    margin-top: .2rem;
+    text-align: center;
+    font-size: .24rem;
+    line-height: 1;
+}
+footer {
+    position: fixed;
+    bottom:0;
+    width:100%;
+    padding:8px 0 4px;;
+    border-top:1px solid #ddd;
+    background: white;
+}
+footer li {
+    float:left;
+    width:25%;
+    text-align: center;
+}
+footer img {
+    height:24px;
+    width:24px;
+}
+footer p {
+    margin-top: 3px;
+}
+/********************************** 我的开始 *************************/
+.vm{
+    display: inline-block;
+    vertical-align: middle;
+}
+.my-icon{
+    width:20px;
+}
+.my-header {
+    line-height: 55px;
+    margin-top: 20px;
+    padding:0 4%;
+    background:white url("../images/right.png") no-repeat 97% center;
+    font-size: 14px;
+    background-size:11px 20px; 
+}
+.my-header p{
+    line-height: 1.5;
+}
+.my-header img{
+    display: inline-block;
+    width:.6rem;
+    height: .6rem;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.my-header div{
+    display: inline-block;
+    vertical-align: middle;
+}
+.my-list li{
+    padding:0 4%;
+    line-height: 45px;
+    background: white;
+    margin-top: 10px;
+    font-size: 14px;
+    background:white url("../images/right.png") no-repeat 97% center;
+    background-size:11px 20px; 
+}
+.my-list li span{
+    margin-left: 3px;
+}
+.my-list li a{
+    display: block;
+}
+.out{
+    padding:0 4%;
+    line-height: 45px;
+    margin-top: 10px;
+    text-align: center;
+    color:#4c8efd;
+    background: white;
+}
+/********************************** 我的结束 *************************/
+
+
+/********************************** 通讯录开始 *************************/
+.call-list img{
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+}
+.call-list li{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding:3% 4%;
+    font-size: .24rem;
+    background: white;
+}
+.call-wrap{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/********************************** 通讯录结束 *************************/
+
+
+
+
+
+
+
+/* -----------------------我的积分开始-------------------- */
+.integral-header
+{
+	height: 190px;
+	color: white;
+	background: url(../images/intergral.png) no-repeat ;
+	background-size:100% 100%;
+}
+.jifen
+{
+	padding-top: 10px;
+	font-size: 70px;
+	text-align: center;
+	color: white;
+}
+.beat
+{
+	margin-top: 15px;
+	font-size: 12px;
+	text-align: center;
+}
+.percent
+{
+	font-size: 18px;
+	color: white;
+}
+.jfnav
+{
+	border-bottom: 1px solid #e8e8e8;
+}
+.jfnav i
+{
+	position: absolute;
+	width: 1px;
+	height: 20px;
+	background:#e8e8e8;
+	right: 0;
+	top: 15px;
+}
+.jfnav li
+{
+	float:left;
+	width: 50%;
+	font-size: 15px;
+	color:#666;
+	line-height: 50px;
+	text-align: center;
+}
+.jfnav li.active
+{
+	border-bottom: 1px solid #3b8cff;
+	color: #3b8cff;
+}
+.prise li
+{
+	padding: 10px ;
+	border-bottom: 1px solid #e3e4e5;
+}
+.itit
+{
+	font-size: 16px;
+	font-weight: normal;
+	color:#444;
+}
+.iname
+{
+	font-size: 14px;
+	color: #777;
+	margin: 2px 0;
+}
+.idate
+{
+	font-size: 12px;
+	color:#9a9a9a;
+}
+.ileft
+{
+	width: 65%;
+}
+.iright
+{
+	width: 32%;
+	text-align: right;
+}
+.iright img
+{
+	width: 18px;
+	height: 18px;
+}
+.igreen
+{
+	color: #30ca79;
+}
+.ired
+{
+	color:#f02b2b;
+}
+.cover
+{
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	right: 0;
+	left:0;
+	background: rgba(0,0,0,.5);
+}
+.warn{
+	position: fixed;
+	padding:5%;
+	left: 15%;
+	top:25%;
+	font-size: 16px;
+	color: #333;
+	text-align: center;
+	border-radius: 5px;
+	box-sizing: border-box;
+	width: 70%;
+	margin: 0 auto;
+	background: white;
+}
+.warn img
+{
+	width: 70px;
+	height: 70px;
+}
+.check a
+{
+	display: inline-block;
+	width: 45%;
+	text-align: center;
+	border-radius: 5px;
+	font-size: 17px;
+	margin-top: 25px;
+}
+.no
+{
+	line-height: 38px;
+	color: #666;
+	margin-right: 5%;
+	border:1px solid #666;
+}
+.yes
+{
+	color:white;
+	line-height: 40px;
+	background: #3b8cff;
+}
+/* -----------------------我的积分结束-------------------- */
+
+/* -----------------------代办事项开始-------------------- */
+.to-do-list li{
+    padding:5px 0;
+    margin-top: 10px;
+    font-size:.24rem;
+    background: white;
+}
+.to-do-list h3{
+    padding: 0 10px;
+    font-size: .28rem;
+    color: #2a2a2a;
+    border-bottom: 1px solid #eee;
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+.to-do-list p{
+    padding:0 10px;
+}
+
+
+/* -----------------------代办事项结束-------------------- */
+#sign,#reset
+{
+    display: inline-block;
+    line-height: 30px;
+    padding: 5px 10px ;
+}
+

@@ -13,6 +13,9 @@ app.use(static(
   path.join( __dirname,  staticPath)   
 ))
 
+// __filename：指向当前运行的脚本文件名。
+// __dirname：指向当前运行的脚本所在的目录。
+
 // parse request body:
 app.use(bodyParser());  //bodypaser要在router之前加载才能生效。
 

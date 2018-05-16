@@ -11,7 +11,8 @@ module.exports = {
         });
     },
     search: async (ctx, next) => {
-        name = ctx.query.name || '',
+        name = ctx.query.name || '';
+        // let { name = '1111'} = ctx.request.query;
         await TestModel.find({"name": name}, function (error, data) {
             if(error) {
                 console.log(error);
